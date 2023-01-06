@@ -2,7 +2,7 @@
 
 const PORT = 8080;
 const express = require('express');
-const { getCurrencyTitle, getCurrencies, getCurrencyWithSymbol } = require('./controllers/currency.controller');
+const { getAllUsers, getUsersByUuid, searchUsersByQuery } = require('./controllers/users.controller')
 
 // const server = http.createServer((req, res) => {
 //     // if (req.url === '/status') {
@@ -76,8 +76,12 @@ const app = express();
 //     res.json(serverInfo);
 // })
 
-app.get("/", getCurrencyTitle);
-app.get("/currencies", getCurrencies);
-app.get("/currencies/:symbol", getCurrencyWithSymbol);
+const currencyRoutes = require('./routes/currencies.routes');
+
+app.use('/currencies', currencyRoutes);
+
+app.get("/users", getAllUsers);
+app.get("/users/search", searchUsersByQuery);
+app.get("/users/:uuid", getUsersByUuid);
 
 app.listen(PORT, () => console.log(`Listening on Port: ${PORT}`))
