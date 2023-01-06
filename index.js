@@ -77,11 +77,9 @@ const app = express();
 // })
 
 const currencyRoutes = require('./routes/currencies.routes');
+const userRoutes = require('./routes/users.routes');
 
-app.use('/currencies', currencyRoutes);
-
-app.get("/users", getAllUsers);
-app.get("/users/search", searchUsersByQuery);
-app.get("/users/:uuid", getUsersByUuid);
+app.use('/api/currencies', currencyRoutes);
+app.use('/api/users', userRoutes);
 
 app.listen(PORT, () => console.log(`Listening on Port: ${PORT}`))
