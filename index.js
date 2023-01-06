@@ -1,5 +1,5 @@
 // const http = require('http');
-
+require('dotenv').config();
 const PORT = 8080;
 const express = require('express');
 const { getAllUsers, getUsersByUuid, searchUsersByQuery } = require('./controllers/users.controller')
