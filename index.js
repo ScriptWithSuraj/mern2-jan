@@ -2,7 +2,6 @@
 require('dotenv').config();
 const PORT = 8080;
 const express = require('express');
-const { getAllUsers, getUsersByUuid, searchUsersByQuery } = require('./controllers/users.controller')
 
 // const server = http.createServer((req, res) => {
 //     // if (req.url === '/status') {
@@ -78,6 +77,9 @@ const app = express();
 
 const currencyRoutes = require('./routes/currencies.routes');
 const userRoutes = require('./routes/users.routes');
+const { verifyAuth } = require('./middleware/verifyAuth');
+
+app.use(verifyAuth);
 
 app.use('/api/currencies', currencyRoutes);
 app.use('/api/users', userRoutes);
